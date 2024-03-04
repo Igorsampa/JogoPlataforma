@@ -158,7 +158,7 @@ export default class CenaJogavel extends Phaser.Scene {
           if (mago.body.velocity.x < 0) {
               velocidadeTiro *= -1;
           }
-          movimentoAtirando();
+        
           //Configurações do tiro/projétil do 
           projetil = this.physics.add.sprite(mago.x, mago.y, "projetil").setScale(0.6);
           hitbox = projetil.body.setSize(80, 50, true);
