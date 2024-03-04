@@ -18,7 +18,7 @@ var config = {
     NovaCena,
     CenaJogavel
 
-]
+] 
 }
 
 var game = new Phaser.Game(config);
