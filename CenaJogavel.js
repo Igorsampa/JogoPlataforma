@@ -13,22 +13,7 @@
    
     //Aqui estão as funções com a animação dos personagens
 
-    function movimentoLados() {
-      mago.anims.play("movimentoLados", true);
-    }
-
-    // function movimentoParado() {
-    //   mago.anims.play("movimentoParado", true);
-    // }
-   
-   function movimentoAtirando() {
-      mago.anims.play("movimentoAtirando", true);
-    }
-    function movimentoInimigo() {
-      inimigo.anims.play("movimentoInimigo", true);
-      barreira.body.x = barreira.x -30
-    }
-
+  
 // Defini uma nova classe chamada CenaJogavel que estende a classe Phaser.Scene
 export default class CenaJogavel extends Phaser.Scene {
   constructor() {
@@ -91,12 +76,12 @@ export default class CenaJogavel extends Phaser.Scene {
         repeat: -1,
       });
    
-      // this.anims.create({
-      //   key: "movimentoParado",
-      //   frames: this.anims.generateFrameNumbers("mago", { start: 0, end: 1 }),
-      //   frameRate: 10,
-      //   repeat: -1,
-      // });
+      this.anims.create({
+        key: "movimentoParado",
+        frames: this.anims.generateFrameNumbers("mago", { start: 0, end: 1 }),
+        frameRate: 10,
+        repeat: -1,
+      });
    
       this.anims.create({
         key: "movimentoAtirando",
@@ -144,19 +129,16 @@ export default class CenaJogavel extends Phaser.Scene {
       } else {
           mago.setVelocityX(0);
           if (atirando === false) {
-              // movimentoParado();
+              movimentoParado();
           }
       }
       //Configurações para que o personagem somente atire caso ele não esteja atirando
       if (botaoC.isDown && !atirando) {
           var velocidadeTiro = 400;
-
-
           //Configurações para caso o último botão apertado for o "esqueda" e o mago está parado, inverter o lado do tiro
-          // if (ultimoBotaoApertado === "esquerda" && mago.anims.currentAnim.key === "movimentoParado") {
-          //     velocidadeTiro *= -1;
-         // } 
-
+          if (ultimoBotaoApertado === "esquerda" && mago.anims.currentAnim.key === "movimentoParado") {
+              velocidadeTiro *= -1;
+          } 
           //Outra configuração para arrumar o lado do tiro do mago
           if (mago.body.velocity.x < 0) {
               velocidadeTiro *= -1;
@@ -224,7 +206,24 @@ export default class CenaJogavel extends Phaser.Scene {
       this.physics.add.overlap(mago, inimigo, function() {
           this.scene.start('NovaCena');
           pontuacao = 0;
-          //O null, this foi utilizado para que seja possível possa acessar corretamente a cena atual e executar as tarefas necessárias de maneira certa durante o jogo.
+          //O null, this foi utilizado para que seja possível acessar corretamente a cena atual e executar as tarefas necessárias de maneira certa durante o jogo.
       }, null, this);
+
+      function movimentoLados() {
+        mago.anims.play("movimentoLados", true); 
+      }
+  
+      function movimentoParado() {
+         mago.anims.play("movimentoParado", true);
+     }
+     
+     function movimentoAtirando() {
+        mago.anims.play("movimentoAtirando", true);
+      }
+      function movimentoInimigo() {
+        inimigo.anims.play("movimentoInimigo", true);
+        barreira.body.x = barreira.x -30
+      }
+  
   }
 }
