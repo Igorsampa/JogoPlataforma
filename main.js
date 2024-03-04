@@ -1,5 +1,5 @@
 
-import NovaCena from './novaCena.js'; // Importo a classe da novaCena
+import NovaCena from './NovaCena.js'; // Importo a classe da novaCena
 import CenaJogavel from './CenaJovavel.js'; //Importo a classe da CenaJogavel
 //Configurações do phaser
 var config = {
