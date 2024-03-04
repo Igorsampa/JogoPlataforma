@@ -19,7 +19,7 @@ export default class NovaCena extends Phaser.Scene {
         var botaoProximaCena = this.add.text(210, 300, 'INICIAR', { fontSize: '64px', fill: '#ffffff' });
         botaoProximaCena.setInteractive(); // Torna o botão interativo para que possa ser clicado
         botaoProximaCena.on('pointerdown', () => {
-            this.scene.start('CenaJovavel'); // Inicia a próxima cena quando o botão é clicado
+            this.scene.start('CenaJogavel'); // Inicia a próxima cena quando o botão é clicado
         });
     }
 
